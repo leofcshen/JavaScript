@@ -40,7 +40,12 @@ MyJS = (postman) => {
       const dividerChar = isPreRequest === '0' ? '=' : '-';
       const scriptType = isPreRequest === '0' ? 'Pre-request Script' : 'Tests';
       const scriptState = isStart === '0' ? '開始' : '結束';
-      const level = pm.globals.get("script_level")
+      const levels = {
+        0: "collection",
+        1: "folder",
+        2: "request"
+      };
+      const level = levels[num];
       console.log(`${dividerChar.repeat(120)} [${level}]_${scriptType} ${scriptState}`);
     },
   };
