@@ -1,4 +1,4 @@
-const MyJS = (pm) => {
+MyJS = (pm) => {
   const MyPM = pm;
 
   return {
