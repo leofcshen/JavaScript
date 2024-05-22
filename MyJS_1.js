@@ -15,7 +15,6 @@ MyJS = (postman) => {
 
     logPreTest: async (type, action) => {
       const emojiMapping = {
-        // 'Request':    '▶️',
         'Request':    '📝',
         'Folder':     '🗂️',
         'Collection': '📦',
