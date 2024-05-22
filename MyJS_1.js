@@ -24,15 +24,15 @@ MyJS = (postman) => {
       const emojiStart = '🟢';
       const emojiEnd = '🔴';
       const layerNamePad = 20;
-      const layer = emojiType + " [" + pm.info.requestName.padEnd(layerNamePad, " ") + "] "+ emojiType;
+      const layer = emojiType + " [" + pm.info.requestName.padEnd(layerNamePad, " ") + "] ";
       const progress = `${layer} => ${pm.info.eventName.padEnd(10, " ")}`;
 
-      console.log(`${progress} ${emojiStart}`);
+      console.log(`${progress} ${emojiStart} ${emojiType}`);
 
       // 有傳入 function 的話執行
       if (action && typeof action === 'function') await action();
 
-      console.log(`${progress} ${emojiEnd}`);
+      console.log(`${progress} ${emojiEnd} ${emojiType}`);
     },
   };
 };
