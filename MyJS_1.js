@@ -1,10 +1,10 @@
 MyJS = (pm) => {
-  const MyPM = pm;
+  const pm = pm;
 
   return {
     sendRequest: (req) => {
       return new Promise((resolve, reject) => {
-        MyPM.sendRequest(req, (err, res) => {
+        pm.sendRequest(req, (err, res) => {
           if (err) {
             return reject(err);
           }
