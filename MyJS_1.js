@@ -13,26 +13,26 @@ const MyJS = (pm) => {
       });
     },
 
-		logPreTest: async (type, name, action) => {
-			const emojiMapping = {
-				'Request': '😀',
-				'Folder': '📁',
-				'Collection': '📦',
-			};
+    logPreTest: async (type, name, action) => {
+      const emojiMapping = {
+        'Request': '😀',
+        'Folder': '📁',
+        'Collection': '📦',
+      };
 
-			const emojiType = emojiMapping[type] || '';
-			const emojiStart = '🟢';
-			const emojiEnd = '🔴';
-			const layerNamePad = 20;
-			const layer = emojiType + " " + name.padEnd(layerNamePad, " ");
-			const progress = `${layer} => ${MyPM.info.eventName.padEnd(10, " ")}`;
+      const emojiType = emojiMapping[type] || '';
+      const emojiStart = '🟢';
+      const emojiEnd = '🔴';
+      const layerNamePad = 20;
+      const layer = emojiType + " " + name.padEnd(layerNamePad, " ");
+      const progress = `${layer} => ${MyPM.info.eventName.padEnd(10, " ")}`;
 
-			console.log(`${progress} ${emojiStart}`);
+      console.log(`${progress} ${emojiStart}`);
 
-			// 有傳入 function 的話執行
-			if (action && typeof action === 'function') await action();
+      // 有傳入 function 的話執行
+      if (action && typeof action === 'function') await action();
 
-			console.log(`${progress} ${emojiEnd}`);
-		},
+      console.log(`${progress} ${emojiEnd}`);
+    },
   };
 };
