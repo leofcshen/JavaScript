@@ -13,7 +13,7 @@ MyJS = (postman) => {
       });
     },
 
-    logPreTest: async (type, name, action) => {
+    logPreTest: async (type, action) => {
       const emojiMapping = {
         'Request': '😀',
         'Folder': '📁',
@@ -24,7 +24,7 @@ MyJS = (postman) => {
       const emojiStart = '🟢';
       const emojiEnd = '🔴';
       const layerNamePad = 20;
-      const layer = emojiType + " " + name.padEnd(layerNamePad, " ");
+      const layer = emojiType + " " + pm.info.requestName.padEnd(layerNamePad, " ");
       const progress = `${layer} => ${pm.info.eventName.padEnd(10, " ")}`;
 
       console.log(`${progress} ${emojiStart}`);
@@ -33,20 +33,6 @@ MyJS = (postman) => {
       if (action && typeof action === 'function') await action();
 
       console.log(`${progress} ${emojiEnd}`);
-    },
-
-    LogDivider: (num) => {
-      const [isPreRequest, isStart] = num.toString(2).padStart(2, '0');
-      const dividerChar = isPreRequest === '0' ? '=' : '-';
-      const scriptType = isPreRequest === '0' ? 'Pre-request Script' : 'Tests';
-      const scriptState = isStart === '0' ? '開始' : '結束';
-      const levels = {
-        0: "collection",
-        1: "folder",
-        2: "request"
-      };
-      const level = levels[num];
-      console.log(`${dividerChar.repeat(120)} [${level}]_${scriptType} ${scriptState}`);
     },
   };
 };
