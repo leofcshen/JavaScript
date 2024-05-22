@@ -14,7 +14,6 @@ MyJS = (postman) => {
     },
 
     logPreTest: async (type, name, action) => {
-      console.log('dd');
       const emojiMapping = {
         'Request': '😀',
         'Folder': '📁',
@@ -26,7 +25,7 @@ MyJS = (postman) => {
       const emojiEnd = '🔴';
       const layerNamePad = 20;
       const layer = emojiType + " " + name.padEnd(layerNamePad, " ");
-      const progress = `${layer} => ${MyPM.info.eventName.padEnd(10, " ")}`;
+      const progress = `${layer} => ${pm.info.eventName.padEnd(10, " ")}`;
 
       console.log(`${progress} ${emojiStart}`);
 
