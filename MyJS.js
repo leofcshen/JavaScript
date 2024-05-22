@@ -144,12 +144,12 @@
 // };
 
 const MyJS = (pm) => {
-  const pm = pm;
+  const MyPM = pm;
 
   return {
     sendRequest: (req) => {
       return new Promise((resolve, reject) => {
-        pm.sendRequest(req, (err, res) => {
+        MyPM.sendRequest(req, (err, res) => {
           if (err) {
             return reject(err);
           }
@@ -170,7 +170,7 @@ const MyJS = (pm) => {
 			const emojiEnd = '🔴';
 			const layerNamePad = 20;
 			const layer = emojiType + " " + name.padEnd(layerNamePad, " ");
-			const progress = `${layer} => ${pm.info.eventName.padEnd(10, " ")}`;
+			const progress = `${layer} => ${MyPM.info.eventName.padEnd(10, " ")}`;
 
 			console.log(`${progress} ${emojiStart}`);
 
