@@ -113,7 +113,7 @@ MyJS = {
     return arrayObj;
   },
 
-  sendRequest: async (req, pm) => {
+  sendRequest: (req, pm) => {
     return new Promise((resolve, reject) => {
       pm.sendRequest(req, (err, res) => {
         if (err) {
