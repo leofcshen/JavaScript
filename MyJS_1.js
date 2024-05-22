@@ -24,7 +24,7 @@ MyJS = (postman) => {
       const emojiStart = '🟢';
       const emojiEnd = '🔴';
       const layerNamePad = 20;
-      const layer = emojiType + " " + pm.info.requestName.padEnd(layerNamePad, " ");
+      const layer = emojiType + " [" + pm.info.requestName.padEnd(layerNamePad, " ") + "] "+ emojiType;
       const progress = `${layer} => ${pm.info.eventName.padEnd(10, " ")}`;
 
       console.log(`${progress} ${emojiStart}`);
