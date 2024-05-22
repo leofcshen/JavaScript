@@ -114,9 +114,7 @@ MyJS = {
   },
 
   sendRequest: async (req, pm) => {
-		console.log(pm.info.requestName);
     return new Promise((resolve, reject) => {
-
       pm.sendRequest(req, (err, res) => {
         if (err) {
           return reject(err);
