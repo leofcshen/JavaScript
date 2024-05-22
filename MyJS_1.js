@@ -1,5 +1,5 @@
-MyJS = (pm) => {
-  const pm = pm;
+MyJS = (postman) => {
+  const pm = postman;
 
   return {
     sendRequest: (req) => {
