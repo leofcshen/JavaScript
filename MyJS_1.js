@@ -34,5 +34,14 @@ MyJS = (pm) => {
 
       console.log(`${progress} ${emojiEnd}`);
     },
+
+    LogDivider: (num) => {
+      const [isPreRequest, isStart] = num.toString(2).padStart(2, '0');
+      const dividerChar = isPreRequest === '0' ? '=' : '-';
+      const scriptType = isPreRequest === '0' ? 'Pre-request Script' : 'Tests';
+      const scriptState = isStart === '0' ? '開始' : '結束';
+      const level = pm.globals.get("script_level")
+      console.log(`${dividerChar.repeat(120)} [${level}]_${scriptType} ${scriptState}`);
+    },
   };
 };
