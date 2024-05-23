@@ -13,7 +13,7 @@ MyJS = (postman) => {
       });
     },
 
-    logPreTest: async (type, action) => {
+    logPreTest: async (type, action, description) => {
       const emojiMapping = {
         'Request':    '📝',
         'Folder':     '🗂️',
@@ -27,12 +27,12 @@ MyJS = (postman) => {
       const layer = emojiType + " [" + pm.info.requestName.padEnd(layerNamePad, " ") + "]";
       const progress = `${layer} => ${pm.info.eventName.padEnd(10, " ")}`;
 
-      console.log(`${progress} ${emojiStart} ${emojiType}`);
+      console.log(`${progress} ${emojiStart} ${emojiType} ${description}_開始`);
 
       // 有傳入 function 的話執行
       if (action && typeof action === 'function') await action();
 
-      console.log(`${progress} ${emojiEnd} ${emojiType}`);
+      console.log(`${progress} ${emojiEnd} ${emojiType} ${description}_結束`);
     },
   };
 };
