@@ -42,6 +42,8 @@ MyJS = (postman) => {
         [pm.collectionVariables]: "pm.collectionVariables",
         [pm.environment]: "pm.environment"
       };
+      const k = typeString[type];
+      console.log(k);
       const typeName = typeString[type] || JSON.stringify(type);
 
       if(!type.has(key)) {
