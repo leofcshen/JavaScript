@@ -8,6 +8,11 @@ MyJS = (postman) => {
     'Collection': '📦',
   };
 
+  const getLayerEmoji = (layer) => {
+    const emoji = emojiMapping[layer] || '';
+    return emoji;
+  };
+
   return {
     sendRequest: (req) => {
       return new Promise((resolve, reject) => {
@@ -19,17 +24,18 @@ MyJS = (postman) => {
         });
       });
     },
+    getLayerEmoji,
 
-    getLayerEmoji: (layer) => {
-      // const emojiMapping = {
-      //   'Request':    '📝',
-      //   'Folder':     '🗂️',
-      //   'Collection': '📦',
-      // };
+    // getLayerEmoji: (layer) => {
+    //   // const emojiMapping = {
+    //   //   'Request':    '📝',
+    //   //   'Folder':     '🗂️',
+    //   //   'Collection': '📦',
+    //   // };
 
-      const emoji = emojiMapping[layer] || '';
-      return emoji;
-    },
+    //   const emoji = emojiMapping[layer] || '';
+    //   return emoji;
+    // },
 
     /**
      * postamn log pre-request 和 test 區塊
@@ -56,7 +62,7 @@ MyJS = (postman) => {
       //   'Collection': '📦',
       // };
 
-      const emojiType = this.getLayerEmoji(type);
+      const emojiType = getLayerEmoji(type);
       const emojiStart = '🟢';
       const emojiEnd = '🔴';
       const layerNamePad = 20;
