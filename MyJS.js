@@ -36,11 +36,9 @@ MyJS = (postman) => {
     },
 
     // 依類型取得變數
+    // todo const request = myScript.getV("collection", "request_Twitch_oauth2/token"); 有錯誤
     getV: (type, key, isBool = false) => {
       const typeString = {
-        // [pm.globals]: "pm.globals",
-        // [pm.collectionVariables]: "pm.collectionVariables",
-        // [pm.environment]: "pm.environment"
         "globals": "pm.globals",
         "collection": "pm.collectionVariables",
         "environment": "pm.environment",
@@ -65,5 +63,10 @@ MyJS = (postman) => {
 
       return value;
     },
+
+    checkV: (value) => {
+      console.log(value);
+      return value;
+    }
   };
 };
