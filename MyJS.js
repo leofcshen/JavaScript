@@ -48,7 +48,6 @@ MyJS = (postman) => {
 
       console.log(`${progress} ${emojiStart} ${emojiType} ${description}_開始`);
 
-      // 有傳入 function 的話執行
       if (typeof action === 'function') {
         await action();
       }
