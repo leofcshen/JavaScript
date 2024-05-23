@@ -83,7 +83,11 @@ MyJS = (postman) => {
       return value;
     },
 
-
+    /**
+     * 取得時間 yyyy-MM-dd HH:mm:ss
+     * @param {number} [timestamp=Date.now()] - 時間戳，默認為當前時間。
+     * @returns {string} 格式化後的日期時間字符串。
+     */
     formatDate: (timestamp = Date.now()) => {
       const date = new Date(timestamp);
 
@@ -96,6 +100,5 @@ MyJS = (postman) => {
 
       return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
     },
-
   };
 };
