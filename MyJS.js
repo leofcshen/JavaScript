@@ -21,6 +21,12 @@ MyJS = (postman) => {
      * @param {string} description - 區塊功能描述
      */
     logPreTest: async (type, action, description) => {
+      const validTypes = ['Request', 'Folder', 'Collection'];
+
+      if (!validTypes.includes(type)) {
+        throw new Error(`Invalid type: ${type}. Valid types are 'Request', 'Folder', 'Collection'.`);
+      }
+
       const emojiMapping = {
         'Request':    '📝',
         'Folder':     '🗂️',
