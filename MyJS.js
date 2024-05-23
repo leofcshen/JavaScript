@@ -39,19 +39,22 @@ MyJS = (postman) => {
     getV: (type, key, isBool = false) => {
       console.log(type);
       const typeString = {
-        [pm.globals]: "pm.globals",
-        [pm.collectionVariables]: "pm.collectionVariables",
-        [pm.environment]: "pm.environment"
+        // [pm.globals]: "pm.globals",
+        // [pm.collectionVariables]: "pm.collectionVariables",
+        // [pm.environment]: "pm.environment"
+        "globals": "pm.globals",
+        "collectionVariables": "pm.collectionVariables",
+        "environment": "pm.environment"
       };
       const k = typeString[type];
       console.log(k);
       const typeName = typeString[type] || JSON.stringify(type);
 
-      if(!type.has(key)) {
+      if(!pm[type].has(key)) {
         throw new Error(`${typeName} 尚未設定變數 ${key}`);
       }
 
-      let value = type.get(key)
+      let value = pm[type].get(key)
 
       if (typeof value === 'string') {
         value = value.trim();
