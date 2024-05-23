@@ -28,6 +28,10 @@ MyJS = (postman) => {
         throw new Error(`Invalid type in function logPreTest: ${type}. Valid types are 'Request', 'Folder', 'Collection'.`);
       }
 
+      if (description === ''){
+        return;
+      }
+
       const emojiMapping = {
         'Request':    '📝',
         'Folder':     '🗂️',
