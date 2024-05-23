@@ -37,6 +37,7 @@ MyJS = (postman) => {
 
     // 依類型取得變數
     getV: (type, key, isBool = false) => {
+      console.log(type);
       const typeString = {
         [pm.globals]: "pm.globals",
         [pm.collectionVariables]: "pm.collectionVariables",
