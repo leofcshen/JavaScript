@@ -2,6 +2,12 @@ MyJS = (postman) => {
   /** postman 的 pm */
   const pm = postman;
 
+  const emojiMapping = {
+    'Request':    '📝',
+    'Folder':     '🗂️',
+    'Collection': '📦',
+  };
+
   return {
     sendRequest: (req) => {
       return new Promise((resolve, reject) => {
@@ -15,11 +21,11 @@ MyJS = (postman) => {
     },
 
     getLayerEmoji: (layer) => {
-      const emojiMapping = {
-        'Request':    '📝',
-        'Folder':     '🗂️',
-        'Collection': '📦',
-      };
+      // const emojiMapping = {
+      //   'Request':    '📝',
+      //   'Folder':     '🗂️',
+      //   'Collection': '📦',
+      // };
 
       const emoji = emojiMapping[layer] || '';
       return emoji;
