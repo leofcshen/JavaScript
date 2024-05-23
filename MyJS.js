@@ -15,7 +15,7 @@ MyJS = (postman) => {
     },
 
     /**
-     * postamn 幫  pre-request 和 test log 區塊
+     * postamn log pre-request 和 test 區塊
      * @param {'Request'|'Folder'|'Collection'} type
      * @param {Function} action - 要執行的動作
      * @param {string} description - 區塊功能描述
