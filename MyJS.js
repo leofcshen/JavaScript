@@ -24,7 +24,12 @@ MyJS = (postman) => {
         });
       });
     },
+
     getLayerEmoji,
+
+    getPostmanTestLayer: (layer, layerName) => {
+      return getLayerEmoji(layer) + layerName;
+    },
 
     // getLayerEmoji: (layer) => {
     //   // const emojiMapping = {
