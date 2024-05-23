@@ -1,5 +1,5 @@
 MyJS = (postman) => {
-   /** postman 的 pm */
+  /** postman 的 pm */
   const pm = postman;
 
   return {
