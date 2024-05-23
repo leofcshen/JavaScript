@@ -37,37 +37,49 @@ MyJS = (postman) => {
 
     // 依類型取得變數
     // todo const request = myScript.getV("collection", "request_Twitch_oauth2/token"); 有錯誤
-    getV: (type, key, isBool = false) => {
-      const typeString = {
-        "globals": "pm.globals",
-        "collection": "pm.collectionVariables",
-        "environment": "pm.environment",
-      };
+    // getV: (type, key, isBool = false) => {
+    //   const typeString = {
+    //     "globals": "pm.globals",
+    //     "collection": "pm.collectionVariables",
+    //     "environment": "pm.environment",
+    //   };
 
-      const typeName = typeString[type] || JSON.stringify(type);
+    //   const typeName = typeString[type] || JSON.stringify(type);
 
-      if(!pm[type].has(key)) {
-        throw new Error(`${typeName} 尚未設定變數 ${key}`);
-      }
+    //   if(!pm[type].has(key)) {
+    //     throw new Error(`${typeName} 尚未設定變數 ${key}`);
+    //   }
 
-      let value = pm[type].get(key)
+    //   let value = pm[type].get(key)
 
-      if (typeof value === 'string') {
-        value = value.trim();
-      }
+    //   if (typeof value === 'string') {
+    //     value = value.trim();
+    //   }
 
-      if (isBool) {
+    //   if (isBool) {
+    //     if (value === '0') return false;
+    //     if (value === '1') return true;
+    //   }
+
+    //   return value;
+    // },
+
+    /**
+     * 檢查 postman 變數並返回其值
+     * @param {Function} action - 返回變數值的函數。 () => pm.globals.get("key")
+     * @param {boolean} [isBool=false] - 指示變數是否應該解析為布爾值。
+     * @returns {*} 變數的值。如果 isBool 為 true，返回布爾值；否則返回原始值。
+     * @throws {Error} 如果變數未定義，則拋出錯誤。
+     */
+    getVar: (action, isBool = false) => {
+      var value = action();
+      if (value === undefined) throw new Error(action + "變數尚未設定");
+
+      if(isBool) {
         if (value === '0') return false;
         if (value === '1') return true;
       }
 
-      return value;
-    },
-
-    checkV: (action) => {
-      var value = action();
-      console.log(value);
-      if (value === undefined) throw new Error(action + "變數尚未設定");
       return value;
     }
   };
