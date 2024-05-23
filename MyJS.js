@@ -25,7 +25,7 @@ MyJS = (postman) => {
 
       // 檢查 type 值
       if (!validTypes.includes(type)) {
-        throw new Error(`Invalid type: ${type}. Valid types are 'Request', 'Folder', 'Collection'.`);
+        throw new Error(`Invalid type in function logPreTest: ${type}. Valid types are 'Request', 'Folder', 'Collection'.`);
       }
 
       const emojiMapping = {
