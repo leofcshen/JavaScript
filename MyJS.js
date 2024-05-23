@@ -1,4 +1,5 @@
 MyJS = (postman) => {
+   /** postman 的 pm */
   const pm = postman;
 
   return {
@@ -13,6 +14,12 @@ MyJS = (postman) => {
       });
     },
 
+    /**
+     * postamn 幫  pre-request 和 test log 區塊
+     * @param {'Request'|'Folder'|'Collection'} type
+     * @param {Function} action - 要執行的動作
+     * @param {string} description - 區塊功能描述
+     */
     logPreTest: async (type, action, description) => {
       const emojiMapping = {
         'Request':    '📝',
@@ -34,35 +41,6 @@ MyJS = (postman) => {
 
       console.log(`${progress} ${emojiEnd} ${emojiType} ${description}_結束`);
     },
-
-    // 依類型取得變數
-    // todo const request = myScript.getV("collection", "request_Twitch_oauth2/token"); 有錯誤
-    // getV: (type, key, isBool = false) => {
-    //   const typeString = {
-    //     "globals": "pm.globals",
-    //     "collection": "pm.collectionVariables",
-    //     "environment": "pm.environment",
-    //   };
-
-    //   const typeName = typeString[type] || JSON.stringify(type);
-
-    //   if(!pm[type].has(key)) {
-    //     throw new Error(`${typeName} 尚未設定變數 ${key}`);
-    //   }
-
-    //   let value = pm[type].get(key)
-
-    //   if (typeof value === 'string') {
-    //     value = value.trim();
-    //   }
-
-    //   if (isBool) {
-    //     if (value === '0') return false;
-    //     if (value === '1') return true;
-    //   }
-
-    //   return value;
-    // },
 
     /**
      * 檢查 postman 變數並返回其值
