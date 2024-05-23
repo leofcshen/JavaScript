@@ -24,6 +24,7 @@ MyJS = (postman) => {
       const validTypes = ['Request', 'Folder', 'Collection'];
 
       if (!validTypes.includes(type)) {
+        console.error("eee");
         throw new Error(`Invalid type: ${type}. Valid types are 'Request', 'Folder', 'Collection'.`);
       }
 
