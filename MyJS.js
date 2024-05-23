@@ -14,6 +14,17 @@ MyJS = (postman) => {
       });
     },
 
+    getLayerEmoji: (layer) => {
+      const emojiMapping = {
+        'Request':    '📝',
+        'Folder':     '🗂️',
+        'Collection': '📦',
+      };
+
+      const emoji = emojiMapping[layer] || '';
+      return emoji;
+    },
+
     /**
      * postamn log pre-request 和 test 區塊
      * @param {'Request'|'Folder'|'Collection'} type
