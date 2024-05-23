@@ -64,8 +64,10 @@ MyJS = (postman) => {
       return value;
     },
 
-    checkV: (value) => {
+    checkV: (action) => {
+      var value = action();
       console.log(value);
+      if (value === undefined) throw new Error("變數尚未設定");
       return value;
     }
   };
