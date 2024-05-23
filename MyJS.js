@@ -50,7 +50,7 @@ MyJS = (postman) => {
       //   'Collection': '📦',
       // };
 
-      const emojiType = getLayerEmoji(type);
+      const emojiType = this.getLayerEmoji(type);
       const emojiStart = '🟢';
       const emojiEnd = '🔴';
       const layerNamePad = 20;
