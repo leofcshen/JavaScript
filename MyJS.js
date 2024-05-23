@@ -23,8 +23,8 @@ MyJS = (postman) => {
     logPreTest: async (type, action, description) => {
       const validTypes = ['Request', 'Folder', 'Collection'];
 
+      // 檢查 type 值
       if (!validTypes.includes(type)) {
-        console.error("eee");
         throw new Error(`Invalid type: ${type}. Valid types are 'Request', 'Folder', 'Collection'.`);
       }
 
