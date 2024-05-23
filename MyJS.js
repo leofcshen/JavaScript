@@ -44,13 +44,13 @@ MyJS = (postman) => {
         return;
       }
 
-      const emojiMapping = {
-        'Request':    '📝',
-        'Folder':     '🗂️',
-        'Collection': '📦',
-      };
+      // const emojiMapping = {
+      //   'Request':    '📝',
+      //   'Folder':     '🗂️',
+      //   'Collection': '📦',
+      // };
 
-      const emojiType = emojiMapping[type] || '';
+      const emojiType = getLayerEmoji(type);
       const emojiStart = '🟢';
       const emojiEnd = '🔴';
       const layerNamePad = 20;
