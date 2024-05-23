@@ -34,5 +34,32 @@ MyJS = (postman) => {
 
       console.log(`${progress} ${emojiEnd} ${emojiType} ${description}_結束`);
     },
+
+    // 依類型取得變數
+    getV: (type, key, isBool = false) => {
+      const typeString = {
+        [pm.globals]: "pm.globals",
+        [pm.collectionVariables]: "pm.collectionVariables",
+        [pm.environment]: "pm.environment"
+      };
+      const typeName = typeString[type] || JSON.stringify(type);
+
+      if(!type.has(key)) {
+        throw new Error(`${typeName} 尚未設定變數 ${key}`);
+      }
+
+      let value = type.get(key)
+
+      if (typeof value === 'string') {
+        value = value.trim();
+      }
+
+      if (isBool) {
+        if (value === '0') return false;
+        if (value === '1') return true;
+      }
+
+      return value;
+    },
   };
 };
