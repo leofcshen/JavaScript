@@ -67,8 +67,8 @@ MyJS = (postman) => {
     /**
      * 檢查 postman 變數並返回其值
      * @param {Function} action - 返回變數值的函數。 () => pm.globals.get("key")
-     * @param {boolean} [isBool=false] - 指示變數是否應該解析為布爾值。
-     * @returns {*} 變數的值。如果 isBool 為 true，返回布爾值；否則返回原始值。
+     * @param {boolean} [isBool=false] - 指示變數是否應該解析為布爾值，0 => false， 1 => false。
+     * @returns {*} 變數的值。
      * @throws {Error} 如果變數未定義，則拋出錯誤。
      */
     getVar: (action, isBool = false) => {
