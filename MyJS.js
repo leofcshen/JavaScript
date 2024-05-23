@@ -20,7 +20,7 @@ MyJS = (postman) => {
      * @param {Function} action - 要執行的動作
      * @param {string} description - 區塊功能描述
      */
-    logPreTest: async (type, action, description = '') => {
+    logPreTest: async (type, action, description) => {
       const validTypes = ['Request', 'Folder', 'Collection'];
 
       // 檢查 type 值
