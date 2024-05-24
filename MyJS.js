@@ -21,7 +21,7 @@ MyJS = (postman) => {
    * @param {Function} action - 要執行的動作
    * @param {string} description - 區塊功能描述
    */
-  const logPreTest = async (type, action, description) => {
+  const log = async (type, action, description) => {
     const validTypes = ['Request', 'Folder', 'Collection'];
 
     // 檢查 type 值
@@ -103,7 +103,7 @@ MyJS = (postman) => {
   return {
     sendRequest,
     getLayerEmoji,
-    logPreTest,
+    log,
     getVar,
     formatDate,
     getTestAll,
