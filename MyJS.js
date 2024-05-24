@@ -44,7 +44,11 @@ MyJS = (postman) => {
     console.log(`${progress} ${emojiStart} ${emojiType} ${description}_開始`);
 
     if (typeof action === 'function') {
-      await action();
+			try {
+	      await action();
+			} catch (err) {
+				console.error(err);
+			}
     }
 
     console.log(`${progress} ${emojiEnd} ${emojiType} ${description}_結束`);
