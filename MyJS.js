@@ -13,7 +13,7 @@ MyJS = (postman) => {
     emojiMapping[layer] || '';
 
   /** 取得 pm.test 前綴 */
-  const getPostmanTestLayer = (layer, layerName) => getLayerEmoji(layer) + layerName;
+  const getTestPre = (layer, layerName) => getLayerEmoji(layer) + layerName;
 
   /**
    * postamn log pre-request 和 test 區塊
@@ -101,7 +101,7 @@ MyJS = (postman) => {
   return {
     sendRequest,
     getLayerEmoji,
-    getPostmanTestLayer,
+    getTestPre,
     logPreTest,
     getVar,
     formatDate,
