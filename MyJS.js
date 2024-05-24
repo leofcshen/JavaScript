@@ -12,8 +12,8 @@ MyJS = (postman) => {
   const getLayerEmoji = (layer) =>
     emojiMapping[layer] || '';
 
-  /** 取得 pm.test 前綴 */
-  const getTestPre = (layer, layerName) => getLayerEmoji(layer) + layerName;
+  // /** 取得 pm.test 前綴 */
+  // const getTestPre = (layer, layerName) => getLayerEmoji(layer) + layerName;
 
   /**
    * postamn log pre-request 和 test 區塊
@@ -98,6 +98,8 @@ MyJS = (postman) => {
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
   };
 
+  const getTestAll = (layer, layerName, testDesc) => getLayerEmoji(layer) + layerName + ` > ${testDesc}`;
+
   return {
     sendRequest,
     getLayerEmoji,
@@ -105,5 +107,6 @@ MyJS = (postman) => {
     logPreTest,
     getVar,
     formatDate,
+    getTestAll,
   };
 };
