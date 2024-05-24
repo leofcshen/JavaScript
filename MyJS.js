@@ -98,7 +98,8 @@ MyJS = (postman) => {
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
   };
 
-  const getTestAll = (layer, layerName, testDesc) => getLayerEmoji(layer) + layerName + ` > ${testDesc}`;
+
+  const getTestName = (layer, layerName, testDesc) => getLayerEmoji(layer) + layerName + ` > ${testDesc}`;
 
   return {
     sendRequest,
@@ -106,6 +107,6 @@ MyJS = (postman) => {
     log,
     getVar,
     formatDate,
-    getTestAll,
+    getTestName,
   };
 };
