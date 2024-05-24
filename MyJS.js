@@ -1,4 +1,4 @@
-MyJS = (postman) => {
+const MyJS = (postman) => {
   /** postman 的 pm */
   const pm = postman;
 
