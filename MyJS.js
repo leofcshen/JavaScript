@@ -103,7 +103,6 @@ MyJS = (postman) => {
   return {
     sendRequest,
     getLayerEmoji,
-    getTestPre,
     logPreTest,
     getVar,
     formatDate,
