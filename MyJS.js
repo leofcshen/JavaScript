@@ -9,10 +9,17 @@ MyJS = (postman) => {
   };
 
   /** 取的 Layer 對應的 Emoji */
-  const getLayerEmoji = (layer) => {
-    const emoji = emojiMapping[layer] || '';
-    return emoji;
-  };
+  // const getLayerEmoji2 = (layer) => {
+  //   const emoji = emojiMapping[layer] || '';
+  //   return emoji;
+  // };
+
+  /** 取的 Layer 對應的 Emoji */
+  const getLayerEmoji = (layer) =>
+    emojiMapping[layer] || '';
+
+  /** 取得 pm.test 前綴 */
+  const getPostmanTestLayer = (layer, layerName) => getLayerEmoji(layer) + layerName;
 
   return {
     sendRequest: (req) => {
@@ -26,11 +33,12 @@ MyJS = (postman) => {
       });
     },
 
-    //getLayerEmoji,
+    getLayerEmoji,
+    getPostmanTestLayer,
 
-    getPostmanTestLayer: (layer, layerName) => {
-      return getLayerEmoji(layer) + layerName;
-    },
+    // getPostmanTestLayer: (layer, layerName) => {
+    //   return getLayerEmoji(layer) + layerName;
+    // },
 
     // getLayerEmoji: (layer) => {
     //   // const emojiMapping = {
