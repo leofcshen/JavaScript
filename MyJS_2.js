@@ -15,6 +15,16 @@ MyJS = {
   },
 };
 
+const emojiMapping = {
+  'Request':    '📝',
+  'Folder':     '🗂️',
+  'Collection': '📦',
+};
+
+function getLayerEmoji(layer) {
+  return emojiMapping[layer] || '';
+};
+
 function logE() {
-   console.log(pm.info.requestName);
+  console.log(pm.info.requestName);
 };
