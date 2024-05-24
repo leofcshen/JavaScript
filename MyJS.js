@@ -8,6 +8,7 @@ MyJS = (postman) => {
     'Collection': '📦',
   };
 
+  /** 取的 Layer 對應的 Emoji */
   const getLayerEmoji = (layer) => {
     const emoji = emojiMapping[layer] || '';
     return emoji;
@@ -25,7 +26,7 @@ MyJS = (postman) => {
       });
     },
 
-    getLayerEmoji,
+    //getLayerEmoji,
 
     getPostmanTestLayer: (layer, layerName) => {
       return getLayerEmoji(layer) + layerName;
