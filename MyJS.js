@@ -21,6 +21,60 @@ MyJS = (postman) => {
   /** 取得 pm.test 前綴 */
   const getPostmanTestLayer = (layer, layerName) => getLayerEmoji(layer) + layerName;
 
+  /**
+   * postamn log pre-request 和 test 區塊
+   * @param {'Request'|'Folder'|'Collection'} type
+   * @param {Function} action - 要執行的動作
+   * @param {string} description - 區塊功能描述
+   */
+  const logPreTest = async (type, action, description) => {
+    const validTypes = ['Request', 'Folder', 'Collection'];
+
+    // 檢查 type 值
+    if (!validTypes.includes(type)) {
+      throw new Error(`Invalid type in function logPreTest: ${type}. Valid types are 'Request', 'Folder', 'Collection'.`);
+    }
+
+    // 沒 description 值的話，跳出不記錄區塊
+    if (description === '') {
+      return;
+    }
+
+    const emojiType = getLayerEmoji(type);
+    const emojiStart = '🟢';
+    const emojiEnd = '🔴';
+    const layerNamePad = 20;
+    const layer = emojiType + " [" + pm.info.requestName.padEnd(layerNamePad, " ") + "]";
+    const progress = `${layer} => ${pm.info.eventName.padEnd(10, " ")}`;
+
+    console.log(`${progress} ${emojiStart} ${emojiType} ${description}_開始`);
+
+    if (typeof action === 'function') {
+      await action();
+    }
+
+    console.log(`${progress} ${emojiEnd} ${emojiType} ${description}_結束`);
+  };
+
+  /**
+   * 檢查 postman 變數並返回其值
+   * @param {Function} action - 返回變數值的函數。 () => pm.globals.get("key")
+   * @param {boolean} [isBool=false] - 指示變數是否應該解析為布爾值，0 => false， 1 => false。
+   * @returns {*} 變數的值。
+   * @throws {Error} 如果變數未定義，則拋出錯誤。
+   */
+  const getVar = (action, isBool = false) => {
+    var value = action();
+    if (value === undefined) throw new Error(action + "變數尚未設定");
+
+    if(isBool) {
+      if (value === '0') return false;
+      if (value === '1') return true;
+    }
+
+    return value;
+  };
+
   return {
     sendRequest: (req) => {
       return new Promise((resolve, reject) => {
@@ -35,6 +89,8 @@ MyJS = (postman) => {
 
     getLayerEmoji,
     getPostmanTestLayer,
+    logPreTest,
+    getVar,
 
     // getPostmanTestLayer: (layer, layerName) => {
     //   return getLayerEmoji(layer) + layerName;
@@ -57,40 +113,40 @@ MyJS = (postman) => {
      * @param {Function} action - 要執行的動作
      * @param {string} description - 區塊功能描述
      */
-    logPreTest: async (type, action, description) => {
-      const validTypes = ['Request', 'Folder', 'Collection'];
+    // logPreTest: async (type, action, description) => {
+    //   const validTypes = ['Request', 'Folder', 'Collection'];
 
-      // 檢查 type 值
-      if (!validTypes.includes(type)) {
-        throw new Error(`Invalid type in function logPreTest: ${type}. Valid types are 'Request', 'Folder', 'Collection'.`);
-      }
+    //   // 檢查 type 值
+    //   if (!validTypes.includes(type)) {
+    //     throw new Error(`Invalid type in function logPreTest: ${type}. Valid types are 'Request', 'Folder', 'Collection'.`);
+    //   }
 
-      // 沒 description 值的話，跳出不記錄區塊
-      if (description === '') {
-        return;
-      }
+    //   // 沒 description 值的話，跳出不記錄區塊
+    //   if (description === '') {
+    //     return;
+    //   }
 
-      // const emojiMapping = {
-      //   'Request':    '📝',
-      //   'Folder':     '🗂️',
-      //   'Collection': '📦',
-      // };
+    //   // const emojiMapping = {
+    //   //   'Request':    '📝',
+    //   //   'Folder':     '🗂️',
+    //   //   'Collection': '📦',
+    //   // };
 
-      const emojiType = getLayerEmoji(type);
-      const emojiStart = '🟢';
-      const emojiEnd = '🔴';
-      const layerNamePad = 20;
-      const layer = emojiType + " [" + pm.info.requestName.padEnd(layerNamePad, " ") + "]";
-      const progress = `${layer} => ${pm.info.eventName.padEnd(10, " ")}`;
+    //   const emojiType = getLayerEmoji(type);
+    //   const emojiStart = '🟢';
+    //   const emojiEnd = '🔴';
+    //   const layerNamePad = 20;
+    //   const layer = emojiType + " [" + pm.info.requestName.padEnd(layerNamePad, " ") + "]";
+    //   const progress = `${layer} => ${pm.info.eventName.padEnd(10, " ")}`;
 
-      console.log(`${progress} ${emojiStart} ${emojiType} ${description}_開始`);
+    //   console.log(`${progress} ${emojiStart} ${emojiType} ${description}_開始`);
 
-      if (typeof action === 'function') {
-        await action();
-      }
+    //   if (typeof action === 'function') {
+    //     await action();
+    //   }
 
-      console.log(`${progress} ${emojiEnd} ${emojiType} ${description}_結束`);
-    },
+    //   console.log(`${progress} ${emojiEnd} ${emojiType} ${description}_結束`);
+    // },
 
     /**
      * 檢查 postman 變數並返回其值
@@ -99,17 +155,17 @@ MyJS = (postman) => {
      * @returns {*} 變數的值。
      * @throws {Error} 如果變數未定義，則拋出錯誤。
      */
-    getVar: (action, isBool = false) => {
-      var value = action();
-      if (value === undefined) throw new Error(action + "變數尚未設定");
+    // getVar: (action, isBool = false) => {
+    //   var value = action();
+    //   if (value === undefined) throw new Error(action + "變數尚未設定");
 
-      if(isBool) {
-        if (value === '0') return false;
-        if (value === '1') return true;
-      }
+    //   if(isBool) {
+    //     if (value === '0') return false;
+    //     if (value === '1') return true;
+    //   }
 
-      return value;
-    },
+    //   return value;
+    // },
 
     /**
      * 取得時間 yyyy-MM-dd HH:mm:ss
