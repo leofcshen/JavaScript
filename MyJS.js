@@ -58,7 +58,7 @@ MyJS = (postman) => {
     console.log(`${progress} ${emojiEnd} ${emojiLayer} ${description}_結束`);
 
     if(layer === 'Collection' && pm.info.eventName === 'test') {
-      console.log("////");
+      console.log("🎡🎡🎡🎡🎡🎡🎡🎡🎡🎡🎡🎡🎡🎡🎡🎡🎡🎡🎡🎡🎡🎡🎡🎡🎡🎡");
     }
   };
 
