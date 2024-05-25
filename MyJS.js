@@ -19,17 +19,17 @@ MyJS = (postman) => {
 
   /**
    * postamn log pre-request 和 test 區塊
-   * @param {'Request'|'Folder'|'Collection'} layer1
+   * @param {'Request'|'Folder'|'Collection'} layer
    * @param {Function} action - 要執行的動作
    * @param {string} description - 區塊功能描述
    */
-  const log = async (layer1, action, description) => {
+  const log = async (layer, action, description) => {
     // #region 檢查參數
     // #region 檢查 layer 值在限定的範圍內
     const validLayers = ['Request', 'Folder', 'Collection'];
 
-    if (!validLayers.includes(layer1))
-      throw new Error(getErrorMessage(`方法名稱 log， 參數 layer = ${layer1}。有效的值為 'Request', 'Folder', 'Collection'.`));
+    if (!validLayers.includes(layer))
+      throw new Error(getErrorMessage(`方法名稱 log， 參數 layer = ${layer}。有效的值為 'Request', 'Folder', 'Collection'.`));
     // #endregion
 
     // 沒 description 值的話，跳出不 log 區塊
@@ -40,14 +40,14 @@ MyJS = (postman) => {
       throw new Error(`參數 action 型別必須是 function`);
     // #endregion
 
-    const emojiType = getLayerEmoji(layer1);
+    const emojiLayer = getLayerEmoji(layer);
     const emojiStart = '🟢';
     const emojiEnd = '🔴';
     const layerNamePad = 20;
-    const layer = emojiType + ' [' + pm.info.requestName.padEnd(layerNamePad, ' ') + ']';
-    const progress = `${layer1} => ${pm.info.eventName.padEnd(10, ' ')}`;
+    const layerM = emojiLayer + ' [' + pm.info.requestName.padEnd(layerNamePad, ' ') + ']';
+    const progress = `${layerM} => ${pm.info.eventName.padEnd(10, ' ')}`;
 
-    console.log(`${progress} ${emojiStart} ${emojiType} ${description}_開始`);
+    console.log(`${progress} ${emojiStart} ${emojiLayer} ${description}_開始`);
 
     try {
       await action();
@@ -55,7 +55,7 @@ MyJS = (postman) => {
       console.error(err);
     }
 
-    console.log(`${progress} ${emojiEnd} ${emojiType} ${description}_結束`);
+    console.log(`${progress} ${emojiEnd} ${emojiLayer} ${description}_結束`);
   };
 
   /**
