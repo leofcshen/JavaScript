@@ -1,6 +1,11 @@
 MyJS = (postman) => {
+  const jsName = 'MyJS';
   /** postman 的 pm */
   const pm = postman;
+
+  const getErrorMessage = (message) => {
+    return jsName + " 方法出錯" + message
+  };
 
   const emojiMapping = {
     'Request':    '📝',
@@ -12,29 +17,30 @@ MyJS = (postman) => {
   const getLayerEmoji = (layer) =>
     emojiMapping[layer] || '';
 
-  // /** 取得 pm.test 前綴 */
-  // const getTestPre = (layer, layerName) => getLayerEmoji(layer) + layerName;
-
   /**
    * postamn log pre-request 和 test 區塊
-   * @param {'Request'|'Folder'|'Collection'} type
+   * @param {'Request'|'Folder'|'Collection'} layer
    * @param {Function} action - 要執行的動作
    * @param {string} description - 區塊功能描述
    */
-  const log = async (type, action, description) => {
-    const validTypes = ['Request', 'Folder', 'Collection'];
+  const log = async (layer, action, description) => {
+    // #region 檢查參數
+    // #region 檢查 layer 值在限定的範圍內
+    const validLayers = ['Request', 'Folder', 'Collection'];
 
-    // 檢查 type 值
-    if (!validTypes.includes(type)) {
-      throw new Error(`Invalid type in function logPreTest: ${type}. Valid types are 'Request', 'Folder', 'Collection'.`);
-    }
+    if (!validLayers.includes(layer))
+      throw new Error(getErrorMessage(`方法名稱 log， 參數 layer = ${layer}。有效的值為 'Request', 'Folder', 'Collection'.`));
+    // #endregion
 
-    // 沒 description 值的話，跳出不記錄區塊
-    if (description === '') {
+    // 沒 description 值的話，跳出不 log 區塊
+    if (description === '')
       return;
-    }
 
-    const emojiType = getLayerEmoji(type);
+    if (typeof action !== 'function')
+      throw new Error(`參數 action 型別必須是 function`);
+    // #endregion
+
+    const emojiType = getLayerEmoji(layer);
     const emojiStart = '🟢';
     const emojiEnd = '🔴';
     const layerNamePad = 20;
@@ -43,12 +49,10 @@ MyJS = (postman) => {
 
     console.log(`${progress} ${emojiStart} ${emojiType} ${description}_開始`);
 
-    if (typeof action === 'function') {
-			try {
-	      await action();
-			} catch (err) {
-				console.error(err);
-			}
+    try {
+      await action();
+    } catch (err) {
+      console.error(err);
     }
 
     console.log(`${progress} ${emojiEnd} ${emojiType} ${description}_結束`);
