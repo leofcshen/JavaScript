@@ -51,15 +51,15 @@ MyJS = (postman) => {
 
     try {
       await action();
-
-      if(layer === 'Collection' && pm.info.eventName === 'test') {
-        console.log("////");
-      }
     } catch (err) {
       console.error(err);
     }
 
     console.log(`${progress} ${emojiEnd} ${emojiLayer} ${description}_結束`);
+
+    if(layer === 'Collection' && pm.info.eventName === 'test') {
+      console.log("////");
+    }
   };
 
   /**
