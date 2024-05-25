@@ -51,6 +51,10 @@ MyJS = (postman) => {
 
     try {
       await action();
+
+      if(layer === 'Collection' && pm.info.eventName === 'test') {
+        console.log("////");
+      }
     } catch (err) {
       console.error(err);
     }
