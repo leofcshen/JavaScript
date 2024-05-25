@@ -36,6 +36,7 @@ MyJS = (postman) => {
     if (description === '')
       return;
 
+    // action 不是 function 拋錯
     if (typeof action !== 'function')
       throw new Error(`參數 action 型別必須是 function`);
     // #endregion
@@ -58,7 +59,7 @@ MyJS = (postman) => {
     console.log(`${progress} ${emojiEnd} ${emojiLayer} ${description}_結束`);
 
     if(layer === 'Collection' && pm.info.eventName === 'test') {
-      console.log("🎡🎡🎡🎡🎡🎡🎡🎡🎡🎡🎡🎡🎡🎡🎡🎡🎡🎡🎡🎡🎡🎡🎡🎡🎡🎡");
+      console.log("=".repeat(50));
     }
   };
 
